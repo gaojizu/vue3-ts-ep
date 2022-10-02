@@ -18,7 +18,7 @@
 			<el-table-column prop="descript" label="商品描述" />
 		</el-table>
 	</div>
-</template>
+</template> 
 
 <script lang="ts" setup>
 	import {
