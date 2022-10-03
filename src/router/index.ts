@@ -6,6 +6,7 @@ const routes: Array<RouteRecordRaw> = [
 		path: '/',
 		name: 'home',
 		component: HomeView,
+		redirect: "goods", //重定向到商品列表页面
 		children: [{
 			path: "/goods",
 			name: "goods",
@@ -15,13 +16,29 @@ const routes: Array<RouteRecordRaw> = [
 			},
 			component: () => import(/* webpackChunkName: "goods" */ '../views/meta/GoodView.vue')
 		}, {
-			path: "/role",
-			name: "/role",
+			path: "/user",
+			name: "user",
 			meta: {
 				isShow: true,
-				title: "用户角色"
+				title: "用户管理"
 			},
-			component: () => import(/* webpackChunkName: "/role" */ '../views/meta/RoleView.vue')
+			component: () => import(/* webpackChunkName: "user" */ '../views/meta/UserView.vue')
+		}, {
+			path: "/role",
+			name: "role",
+			meta: {
+				isShow: true,
+				title: "角色管理"
+			},
+			component: () => import(/* webpackChunkName: "role" */ '../views/meta/RoleView.vue')
+		}, {
+			path: "/auth",
+			name: "auth",
+			meta: {
+				isShow: false,
+				title: "权限管理"
+			},
+			component: () => import(/* webpackChunkName: "auth" */ '../views/meta/AuthView.vue')
 		}]
 	},
 	{
@@ -34,6 +51,17 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes
+})
+
+
+
+router.beforeEach((to, from, next) => {
+	const token: any = localStorage.getItem("token")
+	if (!token && to.path != "/login") {
+		next("/login")
+	} else {
+		next()
+	}
 })
 
 export default router
