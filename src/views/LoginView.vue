@@ -58,6 +58,8 @@
 			if (valid) {
 				loginApi(ruleForm).then((res) => {
 					if (res.status) {
+						localStorage.setItem('userInfos', JSON.stringify(res.data))
+						localStorage.setItem("token", res.data.token)
 						router.push("/")
 					}
 				})

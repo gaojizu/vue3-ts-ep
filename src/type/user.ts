@@ -1,4 +1,4 @@
-           export interface listInit{
+            export interface listInit{
 	id: number,
 	nickName: string,
 	userName: string,
@@ -23,13 +23,20 @@ interface currRowDataInit {
 	userName: string,
 	role: number[]
 }
+interface userinfoInit {
+	userName: string,
+}
 export class InitData {
+	userInfos: userinfoInit = {
+		userName: ""
+	}
 	userList: listInit[] = [] //用户信息列表
 	// 搜索使用
 	searchOptions: searchInit = {
 		roleId: 0,
 		nickName: ""
 	}
+
 	rolelist: RoleInit[] = [] //角色信息
 	isShow = false //是否展示dialog对话框
 	currRowData: currRowDataInit = {

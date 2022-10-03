@@ -34,3 +34,11 @@ export function getUserLists(data: searchInit) {
 		data
 	})
 }
+
+// 获取用户权限信息
+export function getAuthLists() {
+	return service({
+		url: "/authlists",
+		method: "get"
+	})
+}
