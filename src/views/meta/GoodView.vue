@@ -25,8 +25,10 @@
 <script lang="ts" setup>
 	import {
 		computed,
+		onMounted,
 		reactive,
-		toRefs
+		toRefs,
+		watch
 	} from 'vue';
 	import {
 		getGoodlists
@@ -77,13 +79,23 @@
 		data.searchOptions.pagesize = pageSize
 	}
 	// 获取当前商品信息列表
-	getGoodlists().then(res => {
-		if (res.status) {
-			data.goodsList = res.data.list
-			data.searchOptions.totalCount = res.data.list.length
-		} else {
-			data.goodsList = []
-		}
+	const getGoodsListsFunc = () => {
+		getGoodlists().then(res => {
+			if (res.status) {
+				data.goodsList = res.data.list
+				data.searchOptions.totalCount = res.data.list.length
+			} else {
+				data.goodsList = []
+			}
+		})
+	}
+	//监听输入框是否有值
+	watch([() => data.searchOptions.title, () => data.searchOptions.price], () => {
+		if (data.searchOptions.title == "" && data.searchOptions.price == "")
+			getGoodsListsFunc()
+	})
+	onMounted(() => {
+		getGoodsListsFunc()
 	})
 </script>
 
