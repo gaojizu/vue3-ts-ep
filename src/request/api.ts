@@ -42,3 +42,10 @@ export function getAuthLists() {
 		method: "get"
 	})
 }
+// 获取table信息
+export function getTableInfos() {
+	return service({
+		url: "/tableInfos",
+		method: "get"
+	})
+}

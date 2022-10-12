@@ -39,6 +39,14 @@ const routes: Array<RouteRecordRaw> = [
 				title: "权限管理"
 			},
 			component: () => import(/* webpackChunkName: "auth" */ '../views/meta/AuthView.vue')
+		}, {
+			path: "/test",
+			name: "test",
+			meta: {
+				isShow: true,
+				title: "测试页面"
+			},
+			component: () => import(/* webpackChunkName: "test" */ '../views/meta/TestPage.vue')
 		}]
 	},
 	{
