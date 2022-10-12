@@ -38,6 +38,7 @@
 		goodsListInit
 	} from '../../type/goods'
 	const data = reactive(new InitData())
+	
 	const {
 		searchOptions
 	} = {
