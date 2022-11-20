@@ -1,5 +1,7 @@
 {
-	"name": "vue3-ts-ep",
+	"name": "{{ name }}",
+  	"author" : "{{ author }}",
+  	"description":"{{ description }}",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
